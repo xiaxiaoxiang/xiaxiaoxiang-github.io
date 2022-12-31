@@ -16,6 +16,18 @@
 		<link href="https://fireworks.nianbroken.top/NianBrokenStorage/fonts/css.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://fireworks.nianbroken.top/NianBrokenStorage/css/style.css">
 	</head>
+	<style>
+		.type_words {
+			padding: 60px 60px 20px 0px;
+			position: absolute;
+			top: 0px;
+			left: 10px;
+			z-index: 500;
+			color: #ffffff;
+			font-size: 14px;
+		}
+
+	</style>
 	<body>
 
 		<!-- partial:index.partial.html -->
@@ -53,7 +65,12 @@
 				</div>
 			</div>
 
+
 			<div class="stage-container remove">
+				<div class="page_two">
+					<!--<div id="text" style="display:none;"><p>倒计时<br><br>还有<span id="time">0天3小时10分钟32秒2023</span><br><span id="text1">提前祝你2023新年快乐</span><br>接龙哈！发给你最好的3个朋友<br>超过5个就永远幸福<br>不许在你这里断了！<br>明年到来之前必须发完，不许偷懒<br>想起谁，发给谁，包括我[awa]<br><br>彩蛋:点击屏幕任意地方即可放烟花<br><br><br><span id="copyright"></span></p></div>-->
+					<div class="type_words" id="contents" style="font-size:1.15rem;line-height:1.5rem;"><p></p><p>倒计时<br>还有<span id="time" style="color: red">0天3小时14分钟15秒2023</span><br><br><span id="text1">提前祝你2023新年快乐,新的一年要天天开心！</span><span id="copyright"></span></p><p></p></div>
+				</div>
 				<div class="canvas-container">
 					<canvas id="trails-canvas">
 					</canvas>
@@ -91,9 +108,7 @@
 						<div class="menu__header">
 							设置
 						</div>
-						<div class="menu__subheader">
-							若想了解更多信息 请点击任意标签
-						</div>
+
 						<form>
 							<div class="form-option form-option--select">
 								<label class="shell-type-label">
@@ -191,9 +206,50 @@
 			</div>
 		</div>
 		<!-- partial -->
+		<script type="text/javascript" src="./js/canvas.js"></script>
 		<script src='https://fireworks.nianbroken.top/NianBrokenStorage/js/fscreen.js'></script>
 		<script src='https://fireworks.nianbroken.top/NianBrokenStorage/js/Stage.js'></script>
 		<script src='https://fireworks.nianbroken.top/NianBrokenStorage/js/MyMath.js'></script>
 		<script src="https://fireworks.nianbroken.top/NianBrokenStorage/js/script.js"></script>
+		<script>
+			function time() {
+				window.setTimeout("time()", 1000);
+				var seconds = 1000
+				var minutes = seconds * 60
+				var hours = minutes * 60
+				var days = hours * 24
+				var years = days * 365
+				var today = new Date()
+				var todayYear = today.getFullYear()
+				var newYear=todayYear+1
+				var lastYear=todayYear-1
+				var todayMonth = today.getMonth() + 1
+				var todayDate = today.getDate()
+				var todayHour = today.getHours()
+				var todayMinute = today.getMinutes()
+				var todaySecond = today.getSeconds()
+				var t1 = Date.UTC(newYear, 1, 1, 0, 00, 00)
+				var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond)
+				var diff = t1 - t2
+				var diff2 = t2-t1
+				var diffYears = Math.floor(diff / years)
+				var diffDays = Math.floor((diff / days) - diffYears * 365)
+				var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours)
+				var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes)
+				var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+						minutes) / seconds)
+				var diff2Years = Math.floor(diff2 / years)
+				var diff2Days = Math.floor((diff2 / days) - diff2Years * 365)
+				var diff2Hours = Math.floor((diff2 - (diff2Years * 365 + diff2Days) * days) / hours)
+				var diff2Minutes = Math.floor((diff2 - (diff2Years * 365 + diff2Days) * days - diff2Hours * hours) / minutes)
+				var diff2Seconds = Math.floor((diff2 - (diff2Years * 365 + diff2Days) * days - diff2Hours * hours - diff2Minutes *
+						minutes) / seconds)
+				if(todayMonth==1){if(todayDate==1){document.getElementById("text1").innerHTML =  "现在是1月1日,祝你"+todayYear+"新年快乐！"}}
+				else{document.getElementById("text1").innerHTML =  "提前祝你"+newYear+"新年快乐，新的一年，希望你天天开心！≥Ö‿Ö≤" +
+						""}
+				document.getElementById("time").innerHTML =  diffDays + "天" + diffHours + "小时" + diffMinutes + "分钟" + diffSeconds + "秒"+newYear
+			}
+			time();
+		</script>
 	</body>
 </html>
